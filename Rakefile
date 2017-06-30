@@ -16,6 +16,6 @@ end
 
 desc 'Generates a dummy app for testing'
 task :test_app do
-  ENV['LIB_NAME'] = 'spree_return_authorizations_frontend'
+  ENV['LIB_NAME'] = 'solidus_return_authorizations_frontend'
   Rake::Task['extension:test_app'].invoke
 end

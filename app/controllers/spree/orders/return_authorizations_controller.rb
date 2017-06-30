@@ -6,8 +6,8 @@ module Spree
       helper Spree::BaseHelper
       helper Spree::StoreHelper
 
-      before_filter :load_order
-      before_filter :check_return_eligibility, only: [:new, :create]
+      before_action :load_order
+      before_action :check_return_eligibility, only: [:new, :create]
 
       def new
         @return_authorization = Spree::ReturnAuthorization.new(order: @order)
@@ -42,7 +42,7 @@ module Spree
       def return_authorization_params
         params
           .require(:return_authorization)
-          .permit(:memo, {return_items_attributes: [:inventory_unit_id, :_destroy]}, :inventory_units_attributes, :return_authorization_reason_id)
+          .permit(:memo, {return_items_attributes: [:inventory_unit_id, :_destroy]}, :inventory_units_attributes, :return_reason_id)
           .merge(order: @order, stock_location: Spree::StockLocation.first)
       end
 
@@ -60,7 +60,7 @@ module Spree
         unassociated_inventory_units = all_inventory_units - associated_inventory_units
 
         new_return_items = unassociated_inventory_units.map do |new_unit|
-          Spree::ReturnItem.new(inventory_unit: new_unit).tap(&:set_default_pre_tax_amount)
+          Spree::ReturnItem.new(inventory_unit: new_unit).tap(&:set_default_amount)
         end
 
         @form_return_items = (@return_authorization.return_items + new_return_items).sort_by(&:inventory_unit_id)
@@ -71,7 +71,7 @@ module Spree
       end
 
       def load_reasons
-        @reasons = Spree::ReturnAuthorizationReason.active
+        @reasons = Spree::ReturnReason.reasons_for_return_items(@return_authorization.return_items)
       end
     end
   end

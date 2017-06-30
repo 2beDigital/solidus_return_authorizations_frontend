@@ -31,7 +31,7 @@ require 'spree/testing_support/factories'
 require 'spree/testing_support/url_helpers'
 
 # Requires factories defined in lib/spree_return_authorizations_frontend/factories.rb
-require 'spree_return_authorizations_frontend/factories'
+require 'solidus_return_authorizations_frontend/factories'
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
