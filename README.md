@@ -1,4 +1,4 @@
-SpreeReturnAuthorizationsFrontend
+SolidusReturnAuthorizationsFrontend
 =================================
 
 This extension adds a frontend interface to allow user to ask for items returns.
@@ -6,10 +6,10 @@ This extension adds a frontend interface to allow user to ask for items returns.
 Installation
 ------------
 
-Add spree_return_authorizations_frontend to your Gemfile:
+Add solidus_return_authorizations_frontend to your Gemfile:
 
 ```ruby
-gem 'spree_return_authorizations_frontend'
+gem 'solidus_return_authorizations_frontend'
 ```
 
 Bundle your dependencies and run the installation generator:
@@ -32,7 +32,7 @@ When testing your applications integration with this extension you may use it's 
 Simply add this require statement to your spec_helper:
 
 ```ruby
-require 'spree_return_authorizations_frontend/factories'
+require 'solidus_return_authorizations_frontend/factories'
 ```
 
 Copyright (c) 2015 [Nebulab], released under the New BSD License
