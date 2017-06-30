@@ -28,3 +28,5 @@ es:
     actions:
       authorize: Autorizar
     returns: Devoluciones
+    authorized: Autorizada
+    canceled: Cancelada
