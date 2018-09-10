@@ -8,3 +8,4 @@ en:
       created: 'Return request created.'
       not_eligibile: 'This order is not eligibile for return.'
     return_request: Return requests
+    no_more_items_to_return: There are no more products to return or change

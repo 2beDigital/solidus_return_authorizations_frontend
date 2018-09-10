@@ -35,7 +35,7 @@
   </table>
   <%= f.field_container :reason do %>
     <%= f.label :reason, Spree.t(:reason) %>
-    <%= f.select :return_reason_id, @reasons.collect{|r|[r.name, r.id]}, {include_blank: true}, {class: "full-width", "data-placeholder" => Spree.t(:select_a_return_authorization_reason)} %>
+    <%= f.select :return_reason_id, @reasons.collect{|r|[r.name, r.id]}, {include_blank: false, prompt: Spree.t(:select_a_return_authorization_reason)}, class: "form-control select_tag" %>
     <%= f.error_message_on :reason %>
   <% end %>
   </br>

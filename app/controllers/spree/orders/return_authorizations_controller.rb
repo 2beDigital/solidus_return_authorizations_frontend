@@ -56,6 +56,9 @@ module Spree
 
       def load_return_items
         all_inventory_units = @return_authorization.order.inventory_units
+        @order.return_authorizations.each do |ra|
+          all_inventory_units -= ra.return_items.map(&:inventory_unit)
+        end
         associated_inventory_units = @return_authorization.return_items.map(&:inventory_unit)
         unassociated_inventory_units = all_inventory_units - associated_inventory_units
 
