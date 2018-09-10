@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'solidus_return_authorizations_frontend'
-  s.version     = '1.0.0'
+  s.version     = '1.0.1'
   s.summary     = 'Allow customers to request returns'
   s.description = 'Allow customers to create a Return Request to be approved by Spree Admins'
   s.required_ruby_version = '>= 1.9.3'
