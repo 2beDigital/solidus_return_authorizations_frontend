@@ -7,5 +7,11 @@ en:
       create_returns: 'Return or replace items'
       created: 'Return request created.'
       not_eligibile: 'This order is not eligibile for return.'
+    return_authorization_mailer:
+        return_authorization_email:
+            subject: Return request
+            dear_customer: Dear customer
+            instructions: 'You have requested a return of the following products:'
+            thanks: We will answer your request shortly. Thank you very much
     return_request: Return requests
     no_more_items_to_return: There are no more products to return or change

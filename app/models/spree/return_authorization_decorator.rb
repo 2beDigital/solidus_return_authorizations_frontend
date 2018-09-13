@@ -1,4 +1,5 @@
 Spree::ReturnAuthorization.class_eval do
+  after_save :send_return_authorization_email
   StateMachines::Machine.ignore_method_conflicts = true
   state_machines.clear
 
@@ -12,5 +13,9 @@ Spree::ReturnAuthorization.class_eval do
     event :cancel do
       transition to: :canceled, from: [:pending, :authorized], if: lambda { |return_authorization| return_authorization.can_cancel_return_items? }
     end
+  end
+
+  def send_return_authorization_email
+    Spree::ReturnAuthorizationMailer.return_authorization_email(self.id).deliver_later
   end
 end

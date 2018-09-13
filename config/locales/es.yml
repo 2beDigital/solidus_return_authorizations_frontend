@@ -4,6 +4,12 @@ es:
       create_returns: 'Devolver o cambiar productos'
       created: 'Solicitud de devolución o cambio creada.'
       not_eligibile: 'Esta orden no puede ser seleccionada para devolución.'
+    return_authorization_mailer:
+        return_authorization_email:
+            subject: Solicitud de devolución
+            dear_customer: Querido cliente
+            instructions: 'Has solicitado una devolución de los siguientes productos:'
+            thanks: En breve atenderemos tu petición. Muchas gracias
     status: Estado
     memo: Comentarios
     return_request: Solicitud de devolución o cambio

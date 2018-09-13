@@ -1,0 +1,50 @@
+<table>
+  <tr>
+    <td>
+      <p class="lede">
+        <%= Spree.t('return_authorization_mailer.return_authorization_email.dear_customer') %>
+      </p>
+      <p>
+        <%= Spree.t('return_authorization_mailer.return_authorization_email.instructions') %>
+      </p>
+      <% if @ra.return_items.present? %>
+        <table>
+          <thead style='border-top:1px solid black;border-bottom:1px solid #333;'>
+            <tr>
+              <td><%= Spree.t(:product) %></td>
+              <td colspan='2'><%= Spree.t(:description) %></td>
+              <td><%= Spree.t(:status) %></td>
+            </tr>
+          </thead>
+          <tbody>
+          <% @ra.return_items.each do |return_item| %>
+            <% item = return_item.inventory_unit.variant %>
+            <tr>
+              <td>
+                <% if item.images.length == 0 %>
+                  <%= link_to image_tag(item.product.display_image.attachment(:mini)), item.product %>
+                <% else %>
+                  <%= link_to image_tag(item.images.first.attachment.url(:mini)), item.product %>
+                <% end %>
+              </td>
+              <td>
+                <%= item.sku %> <%= item.product.name %>
+              </td>
+              <td>
+                 <%= "(" + item.options_text + ")" unless item.option_values.empty? %>
+              </td>
+              <td>
+                <%= Spree.t(@ra.state.downcase) %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <% end %>
+      <p>
+        <%= Spree.t('return_authorization_mailer.return_authorization_email.thanks') %>
+      </p>
+    </td>
+    <td class="expander"></td>
+  </tr>
+</table>

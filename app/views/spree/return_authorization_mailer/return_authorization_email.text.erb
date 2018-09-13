@@ -1,0 +1,20 @@
+=============================================================
+<%= Spree.t('return_authorization_mailer.return_authorization_email.dear_customer') %>
+
+<%= Spree.t('return_authorization_mailer.return_authorization_email.instructions') %>
+=============================================================
+<% if @ra.return_items.present? %>
+	<% @ra.return_items.each do |return_item| %>
+-------------------------------------------------------------
+		<% item = return_item.inventory_unit.variant %>      
+		<%= Spree.t(:product) %> -> <%= item.sku %> <%= item.product.name %>
+		<%= Spree.t(:description) %> -> <%= "(" + item.options_text + ")" unless item.option_values.empty? %>
+		<%= Spree.t(:status) %> -> <%= Spree.t(@ra.state.downcase) %>
+-------------------------------------------------------------
+	<% end %>
+<% end %>
+=============================================================
+
+<%= Spree.t('return_authorization_mailer.return_authorization_email.thanks') %>
+
+=============================================================
