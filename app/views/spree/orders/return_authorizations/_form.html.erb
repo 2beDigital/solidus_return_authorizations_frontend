@@ -6,6 +6,7 @@
       <tr class="active" data-hook="rma_header">
         <th></th>
         <th><%= Spree.t(:product) %></th>
+        <th><%= Spree.t(:reason) %></th>
         <th><%= Spree.t(:status) %></th>
       </tr>
     </thead>
@@ -28,17 +29,18 @@
                 <span class="variant-options"><%= inventory_unit.variant.options_text %></span>
               </div>
           </td>
+          <td class="return-item-reason">
+            <% if editable %>
+              <%= item_fields.select :return_reason_id, @reasons.collect{|r|[r.name, r.id]}, {include_blank: false, prompt: Spree.t(:select_a_return_authorization_reason)}, {class: 'form-control select_tag'} %>
+            <% else %>
+              <%= return_item.return_reason.try(:name) %>
+            <% end %>
+          </td>
           <td class="align-center"><%= Spree.t(inventory_unit.state.humanize.downcase) %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <%= f.field_container :reason do %>
-    <%= f.label :reason, Spree.t(:reason) %>
-    <%= f.select :return_reason_id, @reasons.collect{|r|[r.name, r.id]}, {include_blank: false, prompt: Spree.t(:select_a_return_authorization_reason)}, class: "form-control select_tag" %>
-    <%= f.error_message_on :reason %>
-  <% end %>
-  </br>
   <%= f.field_container :memo do %>
     <%= f.label :memo, Spree.t(:memo) %>
     <%= f.text_area :memo, {class: "form-control", rows:"5"} %>

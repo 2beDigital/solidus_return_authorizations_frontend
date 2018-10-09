@@ -42,10 +42,9 @@ module Spree
       def return_authorization_params
         params
           .require(:return_authorization)
-          .permit(:memo, {return_items_attributes: [:inventory_unit_id, :_destroy]}, :inventory_units_attributes, :return_reason_id)
+          .permit(:memo, {return_items_attributes: [:inventory_unit_id, :_destroy, :return_reason_id]})
           .merge(order: @order, stock_location: Spree::StockLocation.first)
       end
-
       # This logic is basically copied/pasted from backend:
       # backend/app/controllers/spree/admin/return_authorizations_controller.rb
       def load_form_data
