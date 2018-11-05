@@ -18,6 +18,7 @@ module Spree
         @return_authorization = Spree::ReturnAuthorization.new(return_authorization_params)
         if @return_authorization.save
           flash.notice = Spree.t('return_authorizations_frontend.created')
+          @return_authorization.send_return_authorization_email
           redirect_to spree.account_path
         else
           load_form_data

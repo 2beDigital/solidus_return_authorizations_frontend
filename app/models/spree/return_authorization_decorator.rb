@@ -1,5 +1,5 @@
 Spree::ReturnAuthorization.class_eval do
-  after_save :send_return_authorization_email
+  after_save :send_return_authorization_email, if: "self.authorized?"
   StateMachines::Machine.ignore_method_conflicts = true
   state_machines.clear
 
@@ -16,6 +16,6 @@ Spree::ReturnAuthorization.class_eval do
   end
 
   def send_return_authorization_email
-    Spree::ReturnAuthorizationMailer.return_authorization_email(self).deliver_later
+    Spree::ReturnAuthorizationMailer.return_authorization_email(self.id).deliver_later
   end
 end
