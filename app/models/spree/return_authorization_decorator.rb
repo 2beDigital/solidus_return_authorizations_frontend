@@ -16,6 +16,6 @@ Spree::ReturnAuthorization.class_eval do
   end
 
   def send_return_authorization_email
-    Spree::ReturnAuthorizationMailer.return_authorization_email(self.id).deliver_later
+    Spree::ReturnAuthorizationMailer.return_authorization_email(self).deliver_later
   end
 end
