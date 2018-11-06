@@ -1,11 +1,10 @@
 Spree::ReturnAuthorization.class_eval do
-  after_save :send_return_authorization_email, if: "self.authorized?"
   StateMachines::Machine.ignore_method_conflicts = true
   state_machines.clear
 
   state_machine initial: :pending do
     before_transition to: :canceled, do: :cancel_return_items
-
+    after_transition to: :authorized, do: :send_return_authorization_email
     event :authorize do
       transition to: :authorized, from: :pending
     end
