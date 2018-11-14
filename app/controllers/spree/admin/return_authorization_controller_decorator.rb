@@ -7,4 +7,8 @@ Spree::Admin::ReturnAuthorizationsController.class_eval do
   		@return_authorization.send_return_authorization_email
   	end
   end
+  def create
+  	super
+  	@return_authorization.send_return_authorization_email
+  end
 end
